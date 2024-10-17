@@ -1,0 +1,15 @@
+---
+docker_registry: "registry.url.at"
+docker_user: "{{ vault_registry_user }}"
+docker_password: "{{ vault_registry_user_pw }}"
+
+nginx_instances:
+  "-default":
+    template: "default.conf.j2"
+    snippet_includes:
+      - "ssl_default.conf"
+  "dev":
+    template: "dev.conf.j2"
+    snippet_includes:
+      - "ssl_dev.conf"
+    proxy_pass: "URL:PORT"

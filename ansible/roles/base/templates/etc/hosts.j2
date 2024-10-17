@@ -1,0 +1,19 @@
+# {{ ansible_managed }}
+# this file is created by anisble, and will be overwritte each time base role is deployed
+# be carefull with manuall entries, for static entries modify the inventory in ansible
+
+127.0.0.1   localhost
+{{ host_default_ip }}   {{ inventory_hostname }} {{ inventory_hostname_short }}
+
+# LOCALHOST NAME RESOLUTION
+{% if hosts_file_entries is defined %}
+{{ hosts_file_entries }}
+{% endif %}
+
+# The following lines are desirable for IPv6 capable hosts
+::1	ip6-localhost   ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts

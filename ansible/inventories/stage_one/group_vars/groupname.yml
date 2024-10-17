@@ -1,0 +1,5 @@
+---
+
+cluster: true
+replica: 4
+

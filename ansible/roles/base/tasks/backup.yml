@@ -1,0 +1,14 @@
+---
+- name: "Install required packges for veaam backup"
+  apt:
+    name: mlocate
+
+- name: "Add user for veeam backup"
+  user:
+    name: "{{ backup_user.name }}"
+    uid: "{{ backup_user.id }}"
+    shell: "/bin/bash"
+    groups: "{{ backup_user.groups }}"
+    state: present
+    password: "{{ backup_user.password }}"
+    generate_ssh_key: false

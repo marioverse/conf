@@ -1,0 +1,20 @@
+---
+domain: "test.at"
+vaultfile: "../inventories/stage_one/vault.yml"
+
+users_cleanup_all:
+  - "testuser"   # date
+users_cleanup: "{{ users_cleanup_all }}"
+
+users_sudo_nopwd_all:
+  - "serviceuser"
+  - "daily"
+  - "testy"
+
+users_sudo_nopwd: "{{ users_sudo_nopwd_all }}"
+users_sudo_pwd: {}
+
+ansible_become: true
+ansible_become_method: sudo
+
+package_state: "present"

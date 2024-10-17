@@ -1,0 +1,13 @@
+---
+- name: "Create base directories"
+  file:
+    path: "{{ folder.value.path }}"
+    owner: "{{ folder.value.owner }}"
+    group: "{{ folder.value.group }}"
+    mode: "{{ folder.value.mode }}"
+    state: directory
+  loop: "{{ base_directories | dict2items }}"
+  loop_control:
+    extended: true
+    loop_var: folder
+  tags: base_directories

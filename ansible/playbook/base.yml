@@ -1,0 +1,15 @@
+---
+- hosts: "all:!no_setup_role"
+  gather_facts: true
+
+  vars_files: "{{ vaultfile | default('/dev/null') }}"
+
+  roles:
+    - role: ../roles/base
+    - role: ../roles/user
+      tags: user
+    - role: ../roles/apt
+      tags: apt
+    - role: ../roles/monitoring
+      when: monitoring_enabled | default(false)
+      tags: monitoring

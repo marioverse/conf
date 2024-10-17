@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# An example hook script to verify what is about to be committed.
+# Called by "git commit" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message if
+# it wants to stop the commit.
+#
+# To enable this hook, rename this file to "pre-commit".
+
+
+# check if ansible-lint is installed
+if [[ "$(which ansible-lint 2>&1 > /dev/null)$?" != "0" && "$FORCECOMMIT" != "1" ]]; then
+  echo "Ansible Lint not installd, to override 'export FORCECOMMIT=1'"
+  exit 1
+elif [[ "$(which ansible-lint 2>&1 > /dev/null)$?" != "0" && "$FORCECOMMIT" == "1" ]]; then
+  echo "Commit Changes without linter test."
+  exit 0
+fi
+
+
+EXITCODE="0"
+
+# new changed file linting
+GIT_FILES_CHANGED=$(git diff --name-only --cached --diff-filter=d -- '*.yml' | grep -Ev "vault.yml$")
+
+# prevent ansible-lint to scan the current folder if GIT_FILES_CHANGED is empty
+if [[ ! -z "$GIT_FILES_CHANGED" ]]; then
+  ansible-lint ${GIT_FILES_CHANGED}
+fi

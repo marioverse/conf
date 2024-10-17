@@ -1,0 +1,13 @@
+---
+- import_tasks: "facts.yml"
+  tags: facts
+
+- import_tasks: "directories.yml"
+  tags: directories
+
+- import_tasks: "backup.yml"
+  when: backup_enabled
+  tags: backup
+
+- name: run all notified handlers before id 1000 user change
+  meta: flush_handlers

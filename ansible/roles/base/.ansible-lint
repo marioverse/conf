@@ -1,0 +1,22 @@
+exclude_paths:
+  - "ansible.cfg"
+  - "inventories/ansible.cfg"
+  - "**/molecule/**"
+  - "**/*/.env.yml"
+parseable: true
+quiet: true
+rulesdir: []
+skip_list:
+  - 'meta-no-info'
+  - 'comments'
+  - 'line-length'
+#  - 'package-latest'
+#  - 'no-handler'
+#  - 'ignore-errors'
+tags: []
+use_default_rules: true
+verbosity: 1
+kinds:
+  - inventory: "**/inventories/*/**.{yml,yaml}"
+  - playbook: "**/playbook/**.{yml,yaml}"
+  - playbook: "**/jobs/*.{yml,yaml}"
