@@ -1,0 +1,23 @@
+[includeIf "gitdir:~/vcs/gitlab.com/USER/"]
+        path = ~/.gitconfig-gitlab-testuser
+
+[includeIf "gitdir:~/.local/share/chezmoi/"]
+        path = ~/.gitconfig-gitlab-otheruser
+
+
+[user]
+        name = USERNAME
+        email = MAIL OR HIDDEN MAIL
+[core]
+        editor = nvim
+        #autocrlf = true / input https://git-scm.com/docs/git-config#Documentation/git-config.txt-coreautocrlf
+        excludesfile = ~/.gitignore
+[color]
+        ui = auto
+[color "diff"]
+        meta = yellow bold
+        frag = magenta bold # line info
+        old = red # deletions
+        new = green # additions
+[init]
+        defaultBranch = main
